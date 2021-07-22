@@ -39,7 +39,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuid(),
+            id: uuid(),
         };
 
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
@@ -65,6 +65,27 @@ app.post('/api/notes', (req, res) => {
     } else {
         res.json('Error in posting feedback');
     }
+})
+
+// Delete function should work the same way as POST just need to filter out the selected note
+app.delete('/api/notes/:id', (req, res) => {
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+        } else {
+            const uid = req.params.id;
+            const parsedNotes = JSON.parse(data);
+
+            let updatedNotes = parsedNotes.filter(notes => notes.id != uid);
+
+            fs.writeFile('./db/db.json', JSON.stringify(updatedNotes, null, 4), (writeErr) =>
+                writeErr ? console.error(err) : console.info('Successfully deleted note!'));
+        }
+    });
+        const response = {
+            status: 'success',
+        };
+        res.json(response);
 })
 
 //Wildcard GET 
