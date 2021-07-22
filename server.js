@@ -3,6 +3,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const notes = require("./db/db.json");
+const uuid = require('./helpers/uuid');
 
 //Establish port and express 
 const PORT = process.env.PORT || 3001
@@ -26,6 +27,43 @@ app.get('/notes', (req, res) => {
 
 //GET note data
 app.get('/api/notes', (req, res) => res.json(notes));
+
+app.post('/api/notes', (req, res) => {
+    console.info(`${req.method} request received to add new note`);
+
+    const { title, text } = req.body;
+
+    if (title && text) {
+        const newNote = {
+            title,
+            text,
+            note_id: uuid(),
+        };
+
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+        } else {
+            
+            const parsedNotes = JSON.parse(data);
+
+            parsedNotes.push(newNote);
+
+            fs.writeFile('./db/db.json', JSON.stringify(parsedNotes, null, 4), (writeErr) => 
+                writeErr ? console.error(err) : console.info('Successfully added note!'));
+        }
+    });
+
+        const response = {
+            status: 'success',
+            body: newNote,
+        };
+
+        res.json(response);
+    } else {
+        res.json('Error in posting feedback');
+    }
+})
   
 // PORT listener
 app.listen(PORT, () => {
