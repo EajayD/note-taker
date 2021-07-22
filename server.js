@@ -2,6 +2,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
+const notes = require("./db/db.json");
 
 //Establish port and express 
 const PORT = process.env.PORT || 3001
@@ -23,7 +24,8 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/notes.html'));
 })  
 
-
+//GET note data
+app.get('/api/notes', (req, res) => res.json(notes));
   
 // PORT listener
 app.listen(PORT, () => {
