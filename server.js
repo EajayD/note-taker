@@ -26,7 +26,9 @@ app.get('/notes', (req, res) => {
 })  
 
 //GET note data
-app.get('/api/notes', (req, res) => res.json(notes));
+app.get('/api/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '/db/db.json'));
+});
 
 app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received to add new note`);
@@ -64,6 +66,11 @@ app.post('/api/notes', (req, res) => {
         res.json('Error in posting feedback');
     }
 })
+
+//Wildcard GET 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/index.html'));
+  });
   
 // PORT listener
 app.listen(PORT, () => {
