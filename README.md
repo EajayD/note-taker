@@ -29,9 +29,9 @@ This is a simple note taking application that allows a user to create and view n
 
 ## Usage
 
-Alternatively you can click this live deployed link to get started
+Alternatively you can click this live deployed link powered be Heroku to get started
 
-<a href ="#"></a>
+<a href =" https://mighty-reef-11300.herokuapp.com/">https://mighty-reef-11300.herokuapp.com/</a>
 
 Below is a preview of what to expect on your note taking adventure
 
@@ -47,6 +47,7 @@ Below is a preview of what to expect on your note taking adventure
 * [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 * [Node.js](https://nodejs.org/en/docs/)
 * [Expressjs](https://www.npmjs.com/package/express)
+* [Heroku](https://devcenter.heroku.com/)
 
 
 ## Authors
