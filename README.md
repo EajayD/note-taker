@@ -31,7 +31,7 @@ This is a simple note taking application that allows a user to create and view n
 
 Alternatively you can click this live deployed link powered be Heroku to get started
 
-<a href =" https://mighty-reef-11300.herokuapp.com/">https://mighty-reef-11300.herokuapp.com/</a>
+<a href ="https://mighty-reef-11300.herokuapp.com/">https://mighty-reef-11300.herokuapp.com/</a>
 
 Below is a preview of what to expect on your note taking adventure
 
